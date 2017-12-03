@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>BOOKMARK</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-card *ngFor="let item of savedList">
+
+        <ion-card-content>
+            {{item}}
+        </ion-card-content>
+
+        <ion-row>
+            <ion-col>
+                <button ion-button icon-left clear small (click)="deleteItem(item)">
+                    <ion-icon name="thumbs-up"></ion-icon>
+                    <div>DELETE</div>
+                </button>
+            </ion-col>
+            <!--<ion-col>
+                <button ion-button icon-left clear small (click)="getItems(item)">
+                    <ion-icon name="text"></ion-icon>
+                    <div>Share</div>
+                </button>
+            </ion-col>-->
+            <ion-col center text-center>
+                <ion-note color="danger">
+                    11h ago
+                </ion-note>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+</ion-content>

@@ -1,10 +1,10 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>List2 page</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>ProverbList page</ion-title>
+    </ion-navbar>
 </ion-header>
 
 
@@ -12,12 +12,46 @@
     <ion-refresher (ionRefresh)="doRefresh($event)">
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
-
     <ion-card *ngFor="let item of result">
-        <ion-card-content>
 
+      <!--  <ion-item>
+            <ion-avatar item-start>
+                <img src="assets/imgs/marty-avatar.png">
+            </ion-avatar>
+            <h2>Marty McFly</h2>
+            <p>November 5, 1955</p>
+        </ion-item>
+        <img src="assets/imgs/advance-card-bttf.png" style="height: 200px">
+-->
+        <ion-card-content>
+            {{item.id}}
             {{item.content}}
         </ion-card-content>
 
+        <ion-row>
+            <ion-col>
+                <button ion-button icon-left clear small (click)="saveItem(item)">
+                    <ion-icon name="thumbs-up"></ion-icon>
+                    <div>bookmark</div>
+                </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button icon-left clear small (click)="getItems(item)">
+                    <ion-icon name="text"></ion-icon>
+                    <div>Share</div>
+                </button>
+            </ion-col>
+         <!--   <ion-col center text-center>
+                <ion-note color="danger">
+                    11h ago
+                </ion-note>
+            </ion-col>-->
+        </ion-row>
+
     </ion-card>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
 </ion-content>

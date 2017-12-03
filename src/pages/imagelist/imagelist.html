@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>이미지 리스트</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+    <!--<ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>-->
+
+    <ion-card class="blurred-title-card" *ngFor="let item of result; let k = index">
+        <div class="card-title-top" style="color: white">
+            <p class="jejuFont">
+
+                <ion-col col-12="" style="font-family: 'Jeju Gothic'" (click)="clickedHeart(proverbRsult[k])" >
+                    <ion-icon name="heart"></ion-icon>
+                </ion-col>
+
+            </p>
+        </div>
+
+        <div class="card-image"
+             [style.background-image]="'url(' + item.urls.regular + ')'"></div>
+
+
+        <div class="card-title-background">
+            <span [style.background-image]="'url(' + item.urls.regular + ')'"></span>
+        </div>
+
+
+        <div class="card-title" style="color: white">
+            <p class="jejuFont">
+
+                <ion-col col-12="" style="font-family: 'Jeju Gothic'" >
+                    {{ proverbRsult[k].content}}
+                </ion-col>
+
+            </p>
+        </div>
+    </ion-card>
+
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
+
+<!-- sdlkflsdkflksdlfksdlkflsdkflksdflksdfk -->
