@@ -8,6 +8,8 @@ import {ListPage} from '../pages/list/list';
 import {List2Page} from "../pages/list2/list2";
 import {BookmarkPage} from "../pages/bookmark/bookmark";
 import {ImagelistPage} from "../pages/imagelist/imagelist";
+import {BoardPage} from "../pages/board/board";
+import {RandomPage} from "../pages/random/random";
 
 @Component({
     templateUrl: 'app.html'
@@ -24,11 +26,14 @@ export class MyApp {
 
         // used for an example of ngFor and navigation
         this.pages = [
-            {title: 'Login', component: HomePage},
-            {title: 'List', component: ListPage},
-            {title: 'ProverbList', component: List2Page},
-            {title: 'Bookmark', component: BookmarkPage},
-            {title: 'imageList', component: ImagelistPage},
+            /*
+            {title: 'List', component: ListPage},*/
+            /*{title: 'Login', component: HomePage},*/
+            {title: '명언 모음 (Image)', component: ImagelistPage},
+            {title: '랜덤 명언', component: RandomPage},
+            {title: '명언 북마크', component: BookmarkPage},
+            {title: '명언 모음 (Text)', component: List2Page},
+            /*{title: 'board', component: BoardPage},*/
 
         ];
 

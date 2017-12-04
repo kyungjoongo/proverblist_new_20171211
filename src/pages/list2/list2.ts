@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams, LoadingController, ToastController}
 import {HttpProvider} from "../../providers/http/http";
 import 'rxjs/add/operator/map'
 import {LocalStorageService} from 'angular-2-local-storage';
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the List2Page page.
@@ -30,7 +31,21 @@ export class List2Page {
         , public loadingCtrl: LoadingController) {
 
 
+
         this.getProverbList(1);
+    }
+
+    ionViewWillEnter(){
+
+        if (this.localstorageService.get('sesUserId') != null) {
+
+            //alert('logined!')
+        } else {
+            alert('로긴 안됐어요! 로그인해주세요!')
+
+            this.navCtrl.setPages([{page: HomePage}])
+        }
+
     }
 
     doRefresh(refresher) {
@@ -87,7 +102,7 @@ export class List2Page {
             })
             console.log('Async operation has ended');
             infiniteScroll.complete();
-        }, 500);
+        }, 1000);
     }
 
     savedProverbList = [];

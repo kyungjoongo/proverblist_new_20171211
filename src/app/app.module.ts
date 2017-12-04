@@ -12,20 +12,27 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {HttpProvider} from '../providers/http/http';
 import {HttpModule} from "@angular/http";
 import {BookmarkPage} from "../pages/bookmark/bookmark";
-import { LocalStorageModule } from 'angular-2-local-storage';
-import { ImagelistPage} from "../pages/imagelist/imagelist";
+import {LocalStorageModule} from 'angular-2-local-storage';
+import {ImagelistPage} from "../pages/imagelist/imagelist";
+import {BoardPage} from "../pages/board/board";
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {MyInterceptor} from '../interceptors/my.interceptor';
+
+import {IonicImageLoader} from 'ionic-image-loader';
+
+import {RandomPage} from "../pages/random/random";
 
 @NgModule({
     declarations: [
         MyApp,
         HomePage,
-        ListPage, List2Page,BookmarkPage, ImagelistPage
+        ListPage, List2Page, BookmarkPage, ImagelistPage, BoardPage, RandomPage
     ],
     imports: [
         BrowserModule, HttpModule,
-        IonicModule.forRoot(MyApp),
+        IonicModule.forRoot(MyApp), IonicImageLoader.forRoot(),
         LocalStorageModule.withConfig({
-            prefix: 'kyungjoon-app2',
+            prefix: 'kyungjoon-app3',
             storageType: 'localStorage'
         })
     ],
@@ -33,12 +40,13 @@ import { ImagelistPage} from "../pages/imagelist/imagelist";
     entryComponents: [
         MyApp,
         HomePage,
-        ListPage, List2Page, BookmarkPage, ImagelistPage
+        ListPage, List2Page, BookmarkPage, ImagelistPage, BoardPage, RandomPage
     ],
     providers: [
         StatusBar,
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
+        {provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true},
         HttpProvider
     ]
 })

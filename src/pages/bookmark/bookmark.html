@@ -3,12 +3,14 @@
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>BOOKMARK</ion-title>
+        <ion-title>명언 북마크</ion-title>
     </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
+
+    <!--{{ savedList | json }}-->
     <ion-card *ngFor="let item of savedList">
 
         <ion-card-content>
@@ -16,23 +18,38 @@
         </ion-card-content>
 
         <ion-row>
-            <ion-col>
+            <ion-col align="right">
                 <button ion-button icon-left clear small (click)="deleteItem(item)">
-                    <ion-icon name="thumbs-up"></ion-icon>
-                    <div>DELETE</div>
+                    <ion-icon name="trash"></ion-icon>
+                    <div>delete</div>
                 </button>
             </ion-col>
-            <!--<ion-col>
-                <button ion-button icon-left clear small (click)="getItems(item)">
-                    <ion-icon name="text"></ion-icon>
-                    <div>Share</div>
-                </button>
-            </ion-col>-->
-            <ion-col center text-center>
-                <ion-note color="danger">
-                    11h ago
-                </ion-note>
-            </ion-col>
+
         </ion-row>
     </ion-card>
+
+
+    <!--<ion-card class="blurred-title-card" *ngFor="let item of savedList; let k = index">
+
+
+        <div class="card-image"
+             [style.background-image]="'url(' + imageList[k].urls.regular + ')'"></div>
+
+
+        <div class="card-title-background">
+            <span [style.background-image]="'url(' + imageList[k].urls.regular + ')'"></span>
+        </div>
+
+
+        <div class="card-title" style="color: white">
+            <p class="jejuFont">
+
+                <ion-col col-12="" style="font-family: 'Jeju Gothic'">
+                    {{item}}
+                </ion-col>
+
+            </p>
+        </div>
+    </ion-card-->>
 </ion-content>
+

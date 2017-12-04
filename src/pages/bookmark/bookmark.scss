@@ -1,8 +1,100 @@
 
-
 page-bookmark {
 
-    $toast-md-background: #ff1d12;
+    ion-card.blurred-title-card {
+        position: relative;
+        margin-left: -15px;
+        margin-right: -5px;
+        margin-top: 0px;
+        margin-bottom: 2px;
+        width: 100vw;
+
+        .card-image {
+            width: 100vw;
+            height: 60vw;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: top;
+        }
+
+        .card-title-background,
+        .card-title {
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            bottom: 0;
+            left: 0;
+            margin: 0;
+            overflow: hidden;
+            color: black;
+            text-align: right;
+        }
+
+        .card-title-top {
+            position: absolute;
+            width: 90%;
+            height: 50px;
+            top: 10px;
+            left: 480px;
+            right: 100px;
+            overflow: hidden;
+            color: black;
+
+        }
+
+        .card-title-background span {
+            position: absolute;
+            width: 100%;
+            height: 10vw;
+            bottom: 0;
+            left: 0;
+            right: 5;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            -webkit-filter: blur(50px);
+            -moz-filter: blur(5px);
+            -o-filter: blur(3px);
+            -ms-filter: blur(5px);
+            filter: motionBlur(5px);
+            margin-right: 20px;
+        }
+
+        .card-title {
+            padding: 10px;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-flex-wrap: nowrap;
+            -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-align-content: stretch;
+            -ms-flex-line-pack: stretch;
+            align-content: stretch;
+            -webkit-align-items: flex-start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+
+            user-select: text;
+            text-align: center;
+
+        }
+
+        p {
+            line-height: 100%;
+            font-size: 1em;
+            font-weight: normal;
+            width: 100%;
+            color: white !important;
+        }
+
+    }
 
 }
 

@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {LocalStorageService} from 'angular-2-local-storage';
+import {HttpProvider} from "../../providers/http/http";
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the BookmarkPage page.
@@ -15,29 +17,42 @@ import {LocalStorageService} from 'angular-2-local-storage';
     templateUrl: 'bookmark.html',
 })
 export class BookmarkPage {
-    savedList =[];
+    savedList = [];
+    imageList = [];
+    itemSize;
 
 
     constructor(public navCtrl: NavController
         , public navParams: NavParams
         , public toastcontroller: ToastController
+        , public loadingCtrl: LoadingController
+        , public httpprovider: HttpProvider
         , public localstorageService: LocalStorageService) {
 
 
+        if (this.localstorageService.get('sesUserId') != null) {
+
+            //alert('logined!')
+        } else {
+            alert('로긴 안됐어요! 로그인해주세요!')
+
+            this.navCtrl.setPages([{page: HomePage}])
+        }
+
         this.getSavedItems();
+
+
     }
 
 
-
-    getSavedItems(){
-
-        this.savedList = this.localstorageService.get("contents");
-
-        console.log("savedList-->"+ this.savedList);
+    getSavedItems() {
+        var queries = [];
+        queries = this.localstorageService.get('contents') || [];
+        this.savedList = queries.reverse();
 
     }
 
-    deleteItem(selectItem){
+    deleteItem(selectItem) {
 
         var queries = [];
         queries = this.localstorageService.get('contents') || [];
@@ -52,11 +67,20 @@ export class BookmarkPage {
 
         this.presentToast('아이템이 삭제되었습니다.');
 
+
         this.getSavedItems();
 
 
-
     }
+
+
+    getImageListBySize(pageSize) {
+
+        this.httpprovider.getImagesByPageSize(pageSize).subscribe(response => {
+            this.imageList = response;
+        })
+    }
+
 
     presentToast(message) {
         let toast = this.toastcontroller.create({

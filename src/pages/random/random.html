@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>랜덤 명언 </ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-card class="blurred-title-card"  >
+
+        <div class="card-title-top " style="color: white">
+            <p class="jejuFont">
+
+                <ion-col col-12="" style="font-family: 'Jeju Gothic'" >
+                    <ion-icon name="heart"  (click)="clickedHeart(result.content, $event)" ></ion-icon>
+                    <!--{{ elem.id}}-->
+                </ion-col>
+
+            </p>
+        </div>
+
+        <div class="card-image" (click)="changeProverb()">
+            <img-loader [fallbackAsPlaceholder]="true" src="{{image}}" useImg></img-loader>
+
+
+        </div>
+
+        <div class="card-title-background" >
+            <span [style.background-image]="'url(' + image + ')'"></span>
+        </div>
+
+
+        <div class="card-title" style="color: white">
+            <p class="jejuFont">
+
+                <ion-col col-12="" style="font-family: 'Jeju Gothic'" >
+                    {{ result.content }}<!-- {{result.id}}-->
+                </ion-col>
+
+            </p>
+        </div>
+    </ion-card>
+</ion-content>

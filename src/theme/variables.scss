@@ -32,7 +32,8 @@ $colors: (
     secondary: #32db64,
     danger: #f53d3d,
     light: #f4f4f4,
-    dark: #222
+    dark: #222,
+    yellow : yellow
 );
 
 @import "ionic.theme.default";
@@ -47,11 +48,11 @@ ion-card-content {
     user-select: text;
 }
 
-/*$toast-md-background: #53ff78;*/
+/*$toast-md-background: #53ff78;
 
-/*$toast-md-title-font-size: 1.7rem;*/
+//$toast-md-title-font-size: 1.7rem;
 
-/*$toast-md-title-color: black;*/
+$toast-md-title-color: black;*/
 
 @import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 

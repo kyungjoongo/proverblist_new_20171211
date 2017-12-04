@@ -1,13 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
 import {IonicPage, LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {HttpProvider} from "../../providers/http/http";
 import {LocalStorageService} from 'angular-2-local-storage';
-/**
- * Generated class for the ImagelistPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import 'rxjs/add/operator/catch';
+import {HomePage} from "../home/home";
+
 
 @IonicPage()
 @Component({
@@ -21,16 +18,50 @@ export class ImagelistPage {
     proverbRsult = [];
     page: number = 1;
 
+    defaultImage = 'https://www.placecage.com/1000/1000';
+    /*image = 'https://images.unsplash.com/photo-1443890923422-7819ed4101c0?fm=jpg';*/
+    offset = 100;
+    randCate ;
+
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 public loadingCtrl: LoadingController,
                 public localstorageService: LocalStorageService,
                 public toastcontroller: ToastController,
+                private elRef: ElementRef,
                 public httpprovider: HttpProvider) {
 
-        this.getProverbList(1);
-        this.getImageList(1);
+
+        if (this.localstorageService.get('sesUserId') != null) {
+
+            //alert('logined!')
+        } else {
+            alert('로긴 안됐어요!')
+
+            this.navCtrl.setPages([{page: HomePage}])
+        }
 
 
+        this.httpprovider.getProverbs(1).subscribe(responseJson => {
+            console.log(responseJson);
+            this.proverbRsult = responseJson;
+
+            this.getImageList(1);
+        })
+
+
+        this.getLocalStorageList();
+
+        var _category= [
+
+            'fashion', 'nature', 'backgrounds', 'science', 'education', 'people', 'feelings'
+            , 'religion', 'health', 'places', 'animals'
+            , 'industry', 'food', 'computer', 'sports', 'transportation'
+            , 'travel', 'buildings', 'business', 'music'
+
+        ];
+
+
+        this.randCate = _category[Math.floor(Math.random() * _category.length)];
     }
 
     getImageList(page) {
@@ -42,15 +73,29 @@ export class ImagelistPage {
 
         loading.present();
 
-        this.httpprovider.getImages(page).subscribe(response => {
+        this.httpprovider.getImages(page, this.randCate).subscribe(response => {
 
-            this.result = response;
+            this.result = response.hits;
+
+            console.log(this.result);
 
             loading.dismissAll();
 
             console.log(response);
 
+        }, err => {
+
+            loading.dismissAll();
+            console.log(err);
         })
+    }
+
+    getLocalStorageList() {
+
+        var localStorageProverbList = [];
+        localStorageProverbList = this.localstorageService.get('contents') || [];
+
+        //console.log("localStorageProverbList-->" + localStorageProverbList);
     }
 
     getProverbList(page) {
@@ -67,31 +112,43 @@ export class ImagelistPage {
         console.log('Begin async operation');
         this.page++;
 
-        setTimeout(() => {
+        this.httpprovider.getProverbs(this.page).subscribe(proverbResponseJson => {
 
-            this.httpprovider.getProverbs(this.page).subscribe(proverbResponseJson => {
+            for (var i = 0; i < proverbResponseJson.length; i++) {
+                this.proverbRsult.push(proverbResponseJson[i]);
+            }
+            this.httpprovider.getImages(this.page, this.randCate).subscribe(responseJson => {
 
-                for (var i = 0; i < proverbResponseJson.length; i++) {
-                    this.proverbRsult.push(proverbResponseJson[i]);
+                console.log(responseJson);
+                var arrayResult = [];
+
+                arrayResult = responseJson.hits;
+
+
+                for (var i = 0; i < arrayResult.length; i++) {
+                    this.result.push(arrayResult[i]);
                 }
 
-                this.httpprovider.getImages(this.page).subscribe(responseJson => {
 
-
-                    for (var i = 0; i < responseJson.length; i++) {
-                        this.result.push(responseJson[i]);
-                    }
-                })
+            }, err => {
+                alert(err);
             })
 
-
-            console.log('Async operation has ended');
             infiniteScroll.complete();
-        }, 1000);
+
+        })
+
 
     }
 
-    clickedHeart(item) {
+
+    wasClicked: boolean = false;
+
+    wasClicked2: boolean[] = [];
+
+    @ViewChild('elemId') elemId: ElementRef;
+
+    clickedHeart(item, elemId, event) {
 
         /*  this.savedProverbList.push(item.content);*/
         var queries = [];
@@ -114,12 +171,21 @@ export class ImagelistPage {
         let toast = this.toastcontroller.create({
             message: message,
             duration: 1000,
-            /*position : 'top',*/
-            cssClass : 'toast001'
+            cssClass: 'toast001'
         });
         toast.present();
     }
 
+    /*lazyLoadConfig: IImageLazyLoadConfig = {
+        headers: {
+            'Authorization': 'Bearer auth-token'
+        },
+        loadingClass: 'custom-loading',
+        loadedClass: 'custom-loaded',
+        errorClass: 'custom-error'
+    };*/
 
 
 }
+
+

@@ -10,20 +10,22 @@
 <ion-content padding>
 
   <ion-item>
-    <ion-label color="primary" >username</ion-label>
+    <ion-label color="" >username</ion-label>
     <ion-input placeholder="" [(ngModel)]="username" name="username" value=""></ion-input>
 
 
   </ion-item>
-  <ion-item>
-    <ion-label color="primary"  >password</ion-label>
-    <ion-input placeholder="" [(ngModel)]="password" name="password" value=""></ion-input>
+    <ion-item>
+        <ion-label color="">password</ion-label>
+        <ion-input type="text" placeholder="" [(ngModel)]="password" name="password" value=""></ion-input>
+    </ion-item>
 
 
-  </ion-item>
   <br/>
 
-  <button ion-button color="danger" (click)="clickedSubmitBtn()" full="">submit</button>
+  <button ion-button color="danger" (click)="signup()" full="">singup</button>
+    <button ion-button color="yellow" (click)="signin()" full="">signin</button>
+    <button ion-button color="primary" (click)="logout()" full="" >LOGOUT</button>
 
 
 </ion-content>
