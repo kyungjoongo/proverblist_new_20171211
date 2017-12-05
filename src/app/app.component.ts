@@ -11,6 +11,7 @@ import {ImagelistPage} from "../pages/imagelist/imagelist";
 import {BoardPage} from "../pages/board/board";
 import {RandomPage} from "../pages/random/random";
 import {List03Page} from "../pages/list03/list03";
+import {AdMobPro} from "@ionic-native/admob-pro";
 
 @Component({
     templateUrl: 'app.html'
@@ -22,8 +23,38 @@ export class MyApp {
 
     pages: Array<{ title: string, component: any }>;
 
-    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private admob: AdMobPro) {
+
+
+        platform.ready().then(() => {
+
+              var admobid = {
+                  interstitial: 'ca-app-pub-6826082357124500/9307296734',
+                  banner: 'ca-app-pub-6826082357124500/7593091515'
+
+              };
+              this.admob.prepareInterstitial({
+                  adId: admobid.interstitial,
+                  isTesting: false
+                  , autoShow: true
+
+              })
+
+              // this.admob.showInterstitial();
+
+              this.admob.createBanner({
+                  adId: admobid.banner,
+                  isTesting: false,
+                  autoShow: true,
+                  position: this.admob.AD_POSITION.BOTTOM_CENTER
+              })
+
+
+        });
+
+
         this.initializeApp();
+
 
         // used for an example of ngFor and navigation
         this.pages = [
@@ -41,15 +72,18 @@ export class MyApp {
         ];
 
 
-
     }
 
     initializeApp() {
+
+
         this.platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
             this.statusBar.styleDefault();
             this.splashScreen.hide();
+
+
         });
     }
 

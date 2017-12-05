@@ -21,7 +21,7 @@ import {IonicImageLoader} from 'ionic-image-loader';
 import {RandomPage} from "../pages/random/random";
 import {List03Page} from "../pages/list03/list03";
 import {PairsPipe} from "../pipes/pairs-pipe";
-
+import {AdMobPro} from "@ionic-native/admob-pro";
 
 @NgModule({
     declarations: [
@@ -44,7 +44,7 @@ import {PairsPipe} from "../pipes/pairs-pipe";
         ListPage, List2Page, BookmarkPage, ImagelistPage, BoardPage, RandomPage, List03Page
     ],
     providers: [
-        StatusBar,
+        StatusBar,AdMobPro,
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         {provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true},
