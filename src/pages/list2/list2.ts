@@ -37,14 +37,14 @@ export class List2Page {
 
     ionViewWillEnter(){
 
-        if (this.localstorageService.get('sesUserId') != null) {
+      /*  if (this.localstorageService.get('sesUserId') != null) {
 
             //alert('logined!')
         } else {
             alert('로긴 안됐어요! 로그인해주세요!')
 
             this.navCtrl.setPages([{page: HomePage}])
-        }
+        }*/
 
     }
 
