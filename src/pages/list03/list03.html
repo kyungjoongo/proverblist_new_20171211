@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>list03 test</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="no-padding">
+    <ion-list class="no-padding">
+        <ion-item text-wrap="" class="no-padding" *ngFor="let item of images ; let isEven = even;let i = index;let isLast= last">
+
+            <ion-row class="no-padding" *ngIf="isEven && !isLast" >
+                <ion-col col-6 class="no-padding" >
+                    <img class="imgmg"
+                         src="{{item[i]}}">
+                    <img class="imgmg"
+                         src="{{item[i+1]}}">
+                </ion-col>
+
+
+            </ion-row  >
+
+
+        </ion-item>
+    </ion-list>
+</ion-content>

@@ -12,19 +12,11 @@
     <ion-refresher (ionRefresh)="doRefresh($event)">
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
+
     <ion-card *ngFor="let item of result">
 
-      <!--  <ion-item>
-            <ion-avatar item-start>
-                <img src="assets/imgs/marty-avatar.png">
-            </ion-avatar>
-            <h2>Marty McFly</h2>
-            <p>November 5, 1955</p>
-        </ion-item>
-        <img src="assets/imgs/advance-card-bttf.png" style="height: 200px">
--->
         <ion-card-content>
-            {{item.id}}
+            <!--{{item.id}}-->
             {{item.content}}
         </ion-card-content>
 

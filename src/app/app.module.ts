@@ -17,16 +17,17 @@ import {ImagelistPage} from "../pages/imagelist/imagelist";
 import {BoardPage} from "../pages/board/board";
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {MyInterceptor} from '../interceptors/my.interceptor';
-
 import {IonicImageLoader} from 'ionic-image-loader';
-
 import {RandomPage} from "../pages/random/random";
+import {List03Page} from "../pages/list03/list03";
+import {PairsPipe} from "../pipes/pairs-pipe";
+
 
 @NgModule({
     declarations: [
         MyApp,
-        HomePage,
-        ListPage, List2Page, BookmarkPage, ImagelistPage, BoardPage, RandomPage
+        HomePage,PairsPipe,
+        ListPage, List2Page, BookmarkPage, ImagelistPage, BoardPage, RandomPage, List03Page
     ],
     imports: [
         BrowserModule, HttpModule,
@@ -40,7 +41,7 @@ import {RandomPage} from "../pages/random/random";
     entryComponents: [
         MyApp,
         HomePage,
-        ListPage, List2Page, BookmarkPage, ImagelistPage, BoardPage, RandomPage
+        ListPage, List2Page, BookmarkPage, ImagelistPage, BoardPage, RandomPage, List03Page
     ],
     providers: [
         StatusBar,

@@ -11,16 +11,6 @@
 <ion-content padding>
     <ion-card class="blurred-title-card"  >
 
-        <div class="card-title-top " style="color: white">
-            <p class="jejuFont">
-
-                <ion-col col-12="" style="font-family: 'Jeju Gothic'" >
-                    <ion-icon name="heart"  (click)="clickedHeart(result.content, $event)" ></ion-icon>
-                    <!--{{ elem.id}}-->
-                </ion-col>
-
-            </p>
-        </div>
 
         <div class="card-image" (click)="changeProverb()">
             <img-loader [fallbackAsPlaceholder]="true" src="{{image}}" useImg></img-loader>
@@ -42,5 +32,21 @@
 
             </p>
         </div>
+
+
     </ion-card>
+    <ion-item>
+        <div class="item-right" style="color: white">
+            <p class="jejuFont">
+
+                <ion-col  style="font-family: 'Jeju Gothic'; text-align: right" item-right="" >
+                    <ion-icon item-right="" name="heart"  (click)="clickedHeart(result.content, $event)" ></ion-icon>
+                    <!--{{ elem.id}}-->
+                </ion-col>
+
+            </p>
+        </div>
+    </ion-item>
+
+
 </ion-content>

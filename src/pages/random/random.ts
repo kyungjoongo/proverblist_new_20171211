@@ -37,23 +37,17 @@ export class RandomPage {
     result = [] ;
     image ;
 
-
     getRandProverb() {
+        this.httpprovider.getRandomImageFromSplash().subscribe(response=>{
 
+            this.image = response.urls.regular;
 
-        this.httpprovider.getRandomProverb().subscribe(response => {
+            this.httpprovider.getRandomProverb().subscribe(response => {
 
-            console.log(response, "responsesdlkflsdkf<-");
-
-
-            this.result= response;
-
-            this.image = 'https://picsum.photos/600/300/?image=703';
-
+                this.result= response;
+            })
 
         })
-
-
     }
 
     changeProverb(){
@@ -61,12 +55,12 @@ export class RandomPage {
         this.getRandProverb();
     }
 
-    clickedHeart(item,  event) {
+    clickedHeart(content,  event) {
 
         /*  this.savedProverbList.push(item.content);*/
         var queries = [];
         queries = this.localstorageService.get('contents') || [];
-        queries.push(item.content);
+        queries.push(content);
         console.log("queries--" + queries);
         this.localstorageService.set("contents", queries);
         this.presentToast(' 북마크 되었습니다.');

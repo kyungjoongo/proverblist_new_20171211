@@ -4,6 +4,7 @@ import {HttpProvider} from "../../providers/http/http";
 import {LocalStorageService} from 'angular-2-local-storage';
 import 'rxjs/add/operator/catch';
 import {HomePage} from "../home/home";
+import {timeout} from "rxjs/operator/timeout";
 
 
 @IonicPage()
@@ -21,7 +22,7 @@ export class ImagelistPage {
     defaultImage = 'https://www.placecage.com/1000/1000';
     /*image = 'https://images.unsplash.com/photo-1443890923422-7819ed4101c0?fm=jpg';*/
     offset = 100;
-    randCate ;
+    randCate;
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 public loadingCtrl: LoadingController,
@@ -51,7 +52,7 @@ export class ImagelistPage {
 
         this.getLocalStorageList();
 
-        var _category= [
+        var _category = [
 
             'fashion', 'nature', 'backgrounds', 'science', 'education', 'people', 'feelings'
             , 'religion', 'health', 'places', 'animals'
@@ -117,36 +118,28 @@ export class ImagelistPage {
             for (var i = 0; i < proverbResponseJson.length; i++) {
                 this.proverbRsult.push(proverbResponseJson[i]);
             }
+
             this.httpprovider.getImages(this.page, this.randCate).subscribe(responseJson => {
 
                 console.log(responseJson);
                 var arrayResult = [];
-
                 arrayResult = responseJson.hits;
-
-
                 for (var i = 0; i < arrayResult.length; i++) {
                     this.result.push(arrayResult[i]);
                 }
 
-
-            }, err => {
-                alert(err);
+                infiniteScroll.complete();
             })
 
-            infiniteScroll.complete();
 
         })
 
 
     }
 
-
     wasClicked: boolean = false;
-
-    wasClicked2: boolean[] = [];
-
     @ViewChild('elemId') elemId: ElementRef;
+
 
     clickedHeart(item, elemId, event) {
 

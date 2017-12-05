@@ -10,6 +10,7 @@ import {BookmarkPage} from "../pages/bookmark/bookmark";
 import {ImagelistPage} from "../pages/imagelist/imagelist";
 import {BoardPage} from "../pages/board/board";
 import {RandomPage} from "../pages/random/random";
+import {List03Page} from "../pages/list03/list03";
 
 @Component({
     templateUrl: 'app.html'
@@ -30,9 +31,11 @@ export class MyApp {
             {title: 'List', component: ListPage},*/
             /*{title: 'Login', component: HomePage},*/
             {title: '명언 모음 (Image)', component: ImagelistPage},
-            {title: '랜덤 명언', component: RandomPage},
-            {title: '명언 북마크', component: BookmarkPage},
             {title: '명언 모음 (Text)', component: List2Page},
+            {title: '랜덤 명언', component: RandomPage},
+            {title: '북마크 명언 ', component: BookmarkPage},
+            /*{title: '명언 list03', component: List03Page},*/
+
             /*{title: 'board', component: BoardPage},*/
 
         ];

@@ -1,0 +1,83 @@
+page-list03 {
+
+
+    html {
+        padding: 0px !important;
+        margin-right: 0;
+        margin-left: 0;
+    }
+    body{
+        padding: 0px !important;
+    }
+
+    .label {
+        margin: 0;
+    }
+
+    ion-col{
+        padding: 0px !important;
+    }
+
+    .no-padding , .scroll-content {
+        padding: 0px !important;
+    }
+
+    .item-inner {
+        padding-right: 0px!important;
+    }
+
+    .scroll-content{
+        padding: 8px ;
+    }
+
+    .label {
+        margin: 0 0 0 0;
+    }
+
+    ::-webkit-scrollbar,
+    *::-webkit-scrollbar {
+        display: none;
+    }
+
+    h2.title {
+        font-size: 20px;
+        margin-top: -8px;
+        margin-left: 16px;
+    }
+
+    .item {
+        border: solid #dddddd;
+        border-radius: 2px;
+        border-width: 1.5px;
+        padding: 0 !important;
+        margin-bottom: 8px;
+    }
+
+
+
+    div.bar {
+        padding: 8px;
+    }
+
+    img.imgmg {
+        width: 100%;
+        height: auto;
+        padding: 0 !important;
+    }
+
+    img.ndp {
+        width: 36px;
+        height: 36px;
+    }
+
+    div.ndph {
+        margin-left: 8px;
+    }
+
+    ion-content{
+        margin-left: 0px;
+    }
+
+
+
+}

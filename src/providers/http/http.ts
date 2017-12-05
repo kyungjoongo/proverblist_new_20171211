@@ -13,10 +13,13 @@ import 'rxjs/add/operator/catch';
 export class HttpProvider {
 
     result: any[];
+    pageSize = 10;
 
-    proverbUrl: string = 'http://35.201.153.132:3000/proverbJson/list?page=';
+    ___proverbUrl: string = 'http://kyungjoon.ipdisk.co.kr:3000/proverbJson/list?page=1&pageSize='+ this.pageSize;
 
-    pageSize = 20;
+    proverbUrl: string = 'http://35.201.153.132:3000/proverbJson/list?pageSize='+ this.pageSize+ "&page=";
+
+
     clientId = '61c9be50d64f11751a20ebc3403ad2e50e839288df0034b51c1f0550882884bd';
     _clientId2 = '5870033fa53c60b3714e362d10d6203f8c6771b7944d562a27d4d975620bb634';
     _clientid3 = '9f46142b4d8107e2b5a85b1b58ad63526cec8798d4ac2b991947297c7bcb4fad';
@@ -27,7 +30,7 @@ export class HttpProvider {
 
     plxabayRandomUri ='https://pixabay.com/api/?key=7259916-f3ce173538d4a7f0dee3e23a0&image_type=photo&pretty=true&per_page=3';
 
-    plxabayUri ='https://pixabay.com/api/?key=7259916-f3ce173538d4a7f0dee3e23a0&image_type=photo&pretty=true&per_page=20&page='
+    plxabayUri ='https://pixabay.com/api/?key=7259916-f3ce173538d4a7f0dee3e23a0&image_type=photo&pretty=true&per_page=10&page='
 
     unsplashUriByPageSize: string = 'https://api.unsplash.com/photos/?order_by=popular&client_id=' + this._clientId2 + '&per_page=';
 
@@ -40,7 +43,7 @@ export class HttpProvider {
 
     getProverbs(page) {
 
-        return this.http.get("http://35.201.153.132:3000/proverbJson/list?page=" + page).map(res => {
+        return this.http.get(this.proverbUrl + page).map(res => {
 
             return res.json();
 
