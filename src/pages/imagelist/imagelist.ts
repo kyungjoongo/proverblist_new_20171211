@@ -31,6 +31,7 @@ export class ImagelistPage {
                 private elRef: ElementRef,
                 public httpprovider: HttpProvider) {
 
+/*
 
         if (this.localstorageService.get('sesUserId') != null) {
 
@@ -40,6 +41,7 @@ export class ImagelistPage {
 
             this.navCtrl.setPages([{page: HomePage}])
         }
+*/
 
 
         this.httpprovider.getProverbs(1).subscribe(responseJson => {
