@@ -20,8 +20,8 @@
         <div class="card-title-top " style="color: white">
             <p class="jejuFont">
 
-                <ion-col col-12="" style="font-family: 'Jeju Gothic'" (click)="clickedHeart(proverbRsult[k], elem.id, $event)" >
-                    <ion-icon name="heart" class="heart2" #elem [id]="item.id"  [class.custom-icon]="wasClicked" ></ion-icon>
+                <ion-col col-12="" style="font-family: 'Jeju Gothic'" (click)="clickedHeart(proverbRsult[k], elem.id, $event, k)" >
+                    <ion-icon name="heart" class="heart2" #elem [id]="item.id"  [ngClass]="{'heart2': selectedIndex[k]}"   ></ion-icon>
                     <!--{{ elem.id}}-->
                 </ion-col>
 

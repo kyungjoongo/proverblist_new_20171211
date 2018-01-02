@@ -1,4 +1,5 @@
 import {Component, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
+
 import {IonicPage, LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {HttpProvider} from "../../providers/http/http";
 import {LocalStorageService} from 'angular-2-local-storage';
@@ -13,8 +14,6 @@ import {timeout} from "rxjs/operator/timeout";
     templateUrl: 'imagelist.html',
 })
 export class ImagelistPage {
-
-
     result = [];
     proverbRsult = [];
     page: number = 1;
@@ -31,30 +30,18 @@ export class ImagelistPage {
                 private elRef: ElementRef,
                 public httpprovider: HttpProvider) {
 
-/*
-
-        if (this.localstorageService.get('sesUserId') != null) {
-
-            //alert('logined!')
-        } else {
-            alert('로긴 안됐어요!')
-
-            this.navCtrl.setPages([{page: HomePage}])
-        }
-*/
-
 
         this.httpprovider.getProverbs(1).subscribe(responseJson => {
             console.log(responseJson);
             this.proverbRsult = responseJson;
 
             this.getImageList(1);
-        })
+        });
 
 
         this.getLocalStorageList();
 
-        var _category = [
+        let _category = [
 
             'fashion', 'nature', 'backgrounds', 'science', 'education', 'people', 'feelings'
             , 'religion', 'health', 'places', 'animals'
@@ -95,7 +82,7 @@ export class ImagelistPage {
 
     getLocalStorageList() {
 
-        var localStorageProverbList = [];
+        let localStorageProverbList = [];
         localStorageProverbList = this.localstorageService.get('contents') || [];
 
         //console.log("localStorageProverbList-->" + localStorageProverbList);
@@ -117,9 +104,9 @@ export class ImagelistPage {
 
         this.httpprovider.getProverbs(this.page).subscribe(proverbResponseJson => {
 
-            for (var i = 0; i < proverbResponseJson.length; i++) {
-                this.proverbRsult.push(proverbResponseJson[i]);
-            }
+
+            this.proverbRsult.push.apply(this.proverbRsult,proverbResponseJson);
+
 
             this.httpprovider.getImages(this.page, this.randCate).subscribe(responseJson => {
 
@@ -142,13 +129,22 @@ export class ImagelistPage {
     wasClicked: boolean = false;
     @ViewChild('elemId') elemId: ElementRef;
 
+    selectedIndex =[];
 
-    clickedHeart(item, elemId, event) {
+    clickedHeart(item, elemId, event, index) {
+
+        if (this.selectedIndex[index]){
+            alert('이미북마크되었습니다');
+            return false;
+        }else{
+            this.selectedIndex[index] = true;
+        }
 
         /*  this.savedProverbList.push(item.content);*/
         var queries = [];
         queries = this.localstorageService.get('contents') || [];
 
+        this.wasClicked = true;
 
         queries.push(item.content);
         console.log("queries--" + queries);
